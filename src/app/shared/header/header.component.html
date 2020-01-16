@@ -1,0 +1,53 @@
+<div class="container-menu-header">
+  <div class="topbar">
+    <span class="topbar-child1">
+      Free shipping for standard order over $100
+    </span>
+  </div>
+
+  <div class="wrap_header">
+    <!-- Logo -->
+    <a href="" class="logo">
+      <img src="assets/images/icons/logo.png" alt="IMG-LOGO" />
+    </a>
+
+    <!-- Menu -->
+    <div class="wrap_menu">
+      <nav class="menu">
+        <ul class="main_menu">
+          <li>
+            <a routerLink="">Home</a>
+          </li>
+
+          <li>
+            <a routerLink="/product">Shop</a>
+          </li>
+
+          <li>
+            <a routerLink="/blog">Blog</a>
+          </li>
+
+          <li>
+            <a routerLink="/about">About</a>
+          </li>
+
+          <li>
+            <a routerLink="/contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Header Icon -->
+    <div class="header-icons">
+      <a routerLink="/cart" class="header-wrapicon1 dis-block">
+        <img
+          src="assets/images/icons/icon-header-02.png"
+          class="header-icon1"
+          alt="ICON"
+        />
+        <span class="header-icons-noti">{{ productService.productCount }}</span>
+      </a>
+    </div>
+  </div>
+</div>
