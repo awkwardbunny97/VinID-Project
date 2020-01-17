@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SizeOption, ColorOption } from '../../../models/options.model';
 
 
 @Component({
@@ -13,6 +14,20 @@ export class ProductDetailComponent implements OnInit {
   id: number;
   products;
   product;
+
+  SizeOptions: SizeOption[] = [
+    { size: 'S' },
+    { size: 'X' },
+    { size: 'L' },
+    { size: 'XL' },
+  ];
+
+  ColorOptions: ColorOption[] = [
+    { color: 'Gray' },
+    { color: 'Red' },
+    { color: 'Black' },
+    { color: 'Blue' },
+  ];
 
   slideConfig = {
     "slidesToShow": 4, "slidesToScroll": 1,
