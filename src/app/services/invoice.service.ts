@@ -10,20 +10,12 @@ export class CreateInvoiceService {
     // API path
     apiURL = 'https://oasis-footware.herokuapp.com/api/';
 
-
-    httpHeader = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-        })
-    }
-
     constructor(private httpClient: HttpClient) { }
 
     // Get All Invoice
     public getAllProducts(): Observable<CustomerInvoice> {
         return this.httpClient.get<CustomerInvoice>(
             this.apiURL + 'invoice',
-            this.httpHeader
         );
     }
 
@@ -31,7 +23,6 @@ export class CreateInvoiceService {
     public getProductDetail(id): Observable<CustomerInvoice> {
         return this.httpClient.get<CustomerInvoice>(
             this.apiURL + 'invoice/' + id,
-            this.httpHeader
         );
     }
 
@@ -40,7 +31,6 @@ export class CreateInvoiceService {
         return this.httpClient.post<CustomerInvoice>(
             this.apiURL + item,
             JSON.stringify(data),
-            this.httpHeader
         );
     }
 

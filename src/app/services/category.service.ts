@@ -10,20 +10,12 @@ export class CategoryService {
     // API path
     apiURL = 'https://oasis-footware.herokuapp.com/api/';
 
-    // Http Options
-    httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-        })
-    };
-
     constructor(private httpClient: HttpClient) { }
 
     // Get All Category
     public getCategories(): Observable<Category> {
         return this.httpClient.get<Category>(
             this.apiURL + 'category',
-            this.httpOptions
         );
     }
 
@@ -31,7 +23,6 @@ export class CategoryService {
     public getItem(id): Observable<Category> {
         return this.httpClient.get<Category>(
             this.apiURL + 'category/' + id,
-            this.httpOptions
         );
     }
 

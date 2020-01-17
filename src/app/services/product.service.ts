@@ -10,13 +10,6 @@ export class ProductService {
     // API path
     apiURL = 'https://oasis-footware.herokuapp.com/api/';
 
-    // Http Options
-    httpHeader = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-        })
-    };
-
     // Header Icon Count
     productCount = 0;
 
@@ -26,7 +19,6 @@ export class ProductService {
     public getAllProducts(): Observable<Products> {
         return this.httpClient.get<Products>(
             this.apiURL + 'product',
-            this.httpHeader
         );
     }
 
@@ -34,7 +26,6 @@ export class ProductService {
     public getProductDetail(id): Observable<Products> {
         return this.httpClient.get<Products>(
             this.apiURL + 'product/' + id,
-            this.httpHeader
         );
     }
 
@@ -45,11 +36,8 @@ export class ProductService {
         a = JSON.parse(localStorage.getItem('avct_item')) || [];
 
         a.push(product);
-        // this.toastrService.wait('Adding Product to Cart', 'Product Adding to the cart');
-        // setTimeout(() => {
         localStorage.setItem('avct_item', JSON.stringify(a));
         this.calculateLocalCartProdCounts();
-        // }, 500);
     }
 
     // Removing cart from local
