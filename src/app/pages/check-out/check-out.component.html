@@ -162,40 +162,128 @@
                 Please fill-full this form to finish ordering!
               </h4>
 
-              <div class="bo4 of-hidden size15 m-b-20 form-group">
+              <div class="form-group">
                 <input
                   class="sizefull s-text7 p-l-22 p-r-22  form-control"
                   type="text"
                   placeholder="Full Name"
                   formControlName="orderName"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && this.userCartDetail.controls.orderName.errors
+                  }"
                 />
+                <div
+                  *ngIf="
+                    submitted && this.userCartDetail.controls.orderName.errors
+                  "
+                  class="invalid-feedback"
+                >
+                  <div
+                    *ngIf="
+                      this.userCartDetail.controls.orderName.errors.required
+                    "
+                  >
+                    This field is required
+                  </div>
+                </div>
               </div>
 
-              <div class="bo4 of-hidden size15 m-b-20 form-group">
+              <div class="form-group">
                 <input
                   class="sizefull s-text7 p-l-22 p-r-22  form-control"
                   type="tel"
                   placeholder="Phone"
                   formControlName="orderPhone"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      this.userCartDetail.controls.orderPhone.errors
+                  }"
                 />
+                <div
+                  *ngIf="
+                    submitted && this.userCartDetail.controls.orderPhone.errors
+                  "
+                  class="invalid-feedback"
+                >
+                  <div
+                    *ngIf="
+                      this.userCartDetail.controls.orderPhone.errors.required
+                    "
+                  >
+                    This field is required
+                  </div>
+                  <div
+                    *ngIf="
+                      this.userCartDetail.controls.orderPhone.errors.pattern
+                    "
+                  >
+                    Phone number must be a valid phone number
+                  </div>
+                </div>
               </div>
 
-              <div class="bo4 of-hidden size15 m-b-20 form-group">
+              <div class="form-group">
                 <input
                   class="sizefull s-text7 p-l-22 p-r-22  form-control"
                   type="email"
                   placeholder="Email"
                   formControlName="orderEmail"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      this.userCartDetail.controls.orderEmail.errors
+                  }"
                 />
+                <div
+                  *ngIf="
+                    submitted && this.userCartDetail.controls.orderEmail.errors
+                  "
+                  class="invalid-feedback"
+                >
+                  <div
+                    *ngIf="
+                      this.userCartDetail.controls.orderEmail.errors.required
+                    "
+                  >
+                    This field is required
+                  </div>
+                  <div
+                    *ngIf="this.userCartDetail.controls.orderEmail.errors.email"
+                  >
+                    Email address must be a valid email address
+                  </div>
+                </div>
               </div>
 
-              <div class="bo4 of-hidden size15 m-b-20 form-group">
+              <div class="form-group">
                 <input
                   class="sizefull s-text7 p-l-22 p-r-22  form-control"
                   type="text"
                   placeholder="Address"
                   formControlName="orderAddress"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      this.userCartDetail.controls.orderAddress.errors
+                  }"
                 />
+                <div
+                  *ngIf="
+                    submitted &&
+                    this.userCartDetail.controls.orderAddress.errors
+                  "
+                  class="invalid-feedback"
+                >
+                  <div
+                    *ngIf="
+                      this.userCartDetail.controls.orderAddress.errors.required
+                    "
+                  >
+                    This field is required
+                  </div>
+                </div>
               </div>
 
               <div class="w-size25">
@@ -214,3 +302,11 @@
     </section>
   </div>
 </section>
+
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="default"
+  type="ball-clip-rotate-multiple"
+>
+  <p style="color: white">Please Wait.</p>
+</ngx-spinner>

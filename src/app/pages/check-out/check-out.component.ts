@@ -3,7 +3,9 @@ import { ProductService } from '../../services/product.service';
 import { Products } from '../../models/product.model';
 import { CustomerInvoice } from '../../models/customer.model';
 import { CreateInvoiceService } from '../../services/invoice.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { NgxSpinnerService } from "ngx-spinner";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-check-out',
@@ -15,18 +17,22 @@ export class CheckOutComponent implements OnInit {
   totalPrice = 0;
   invoice: CustomerInvoice;
   userCartDetail: FormGroup;
+  submitted = false;
 
-  constructor(private productService: ProductService, private invoiceService: CreateInvoiceService) {
+  constructor(private productService: ProductService,
+    private invoiceService: CreateInvoiceService,
+    private spinner: NgxSpinnerService,
+    private router: Router, ) {
     this.invoice = new CustomerInvoice();
   }
 
   ngOnInit() {
     this.getLocalProduct();
     this.userCartDetail = new FormGroup({
-      orderName: new FormControl(),
-      orderPhone: new FormControl(),
-      orderEmail: new FormControl(),
-      orderAddress: new FormControl()
+      orderName: new FormControl('', [Validators.required]),
+      orderPhone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
+      orderEmail: new FormControl('', [Validators.required, Validators.email]),
+      orderAddress: new FormControl('', [Validators.required])
     });
   }
 
@@ -47,7 +53,6 @@ export class CheckOutComponent implements OnInit {
 
 
   createInvoice() {
-
     this.invoice.totalValue = this.totalPrice;
     this.invoice.productValue = 0;
     this.invoice.discountValue = 0;
@@ -65,18 +70,23 @@ export class CheckOutComponent implements OnInit {
 
 
     console.log(this.invoice);
+    this.submitted = true;
+    if (this.userCartDetail.invalid) {
+      return;
+    }
 
-    // this.SpinnerService.show();
+    this.spinner.show();
     this.invoiceService.createInvoice('invoice', this.invoice).subscribe(
       res => {
-        // this.SpinnerService.hide();
         console.log(res);
+        alert('Success Order');
+        this.spinner.hide();
         //this.getLocalProduct();
-        // this.router.navigate(['/category']);
+        this.router.navigate(['']);
       },
       error => {
         console.log(error);
-        // this.SpinnerService.hide();
+        this.spinner.hide();
       }
     );
 
