@@ -27,7 +27,7 @@
     "boostrap": "^2.0.0",
     "bootstrap": "^4.4.1",
     "firebase": ">= 5.5.7 <8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng2-select2": "^1.0.0-beta.16",
     "ngx-slick": "^0.2.1",
     "ngx-slick-carousel": "^0.4.7",
